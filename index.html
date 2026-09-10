@@ -1,0 +1,1408 @@
+
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+
+          content="width=device-width, initial-scale=1.0">
+
+    <title>人生ガチャ</title>
+
+    <style>
+
+        /* =========================
+
+           全体
+
+        ========================= */
+
+        * {
+
+            box-sizing: border-box;
+
+        }
+
+        body {
+
+            margin: 0;
+
+            font-family:
+
+                Arial,
+
+                "Hiragino Kaku Gothic ProN",
+
+                "Yu Gothic",
+
+                sans-serif;
+
+            background: #fff0f6;
+
+            color: #5b4545;
+
+        }
+
+        /* =========================
+
+           Header
+
+        ========================= */
+
+        header {
+
+            text-align: center;
+
+            padding: 35px 20px 25px;
+
+        }
+
+        header h1 {
+
+            margin: 0 0 10px;
+
+            font-size: 52px;
+
+            color: #ef4f82;
+
+            font-weight: bold;
+
+        }
+
+        header p {
+
+            margin: 0;
+
+            font-size: 20px;
+
+            color: #5b4545;
+
+        }
+
+        /* =========================
+
+           Main
+
+        ========================= */
+
+        main {
+
+            width: 100%;
+
+            max-width: 1450px;
+
+            margin: 0 auto;
+
+            padding: 20px 30px 50px;
+
+        }
+
+        /* =========================
+
+           3 Columns
+
+        ========================= */
+
+        .main-area {
+
+            display: grid;
+
+            grid-template-columns:
+
+                1fr 1fr 1fr;
+
+            gap: 20px;
+
+            align-items: stretch;
+
+        }
+
+        /* =========================
+
+           Common Card
+
+        ========================= */
+
+        .character,
+
+        .profile,
+
+        .gacha-box {
+
+            background: white;
+
+            border-radius: 25px;
+
+            box-shadow:
+
+                0 5px 20px rgba(0, 0, 0, 0.07);
+
+            overflow: hidden;
+
+        }
+
+        /* =========================
+
+           Character
+
+        ========================= */
+
+        .character {
+
+            text-align: center;
+
+            padding: 25px 20px 30px;
+
+        }
+
+        .monkey {
+
+            width: 100%;
+
+            margin-bottom: 10px;
+
+        }
+
+        .monkey img {
+
+            display: block;
+
+            width: 100%;
+
+            max-width: 450px;
+
+            height: auto;
+
+            margin: 0 auto;
+
+            border-radius: 20px;
+
+        }
+
+        .character h2 {
+
+            margin: 10px 0;
+
+            font-size: 30px;
+
+            color: #e9507a;
+
+        }
+
+        .character p {
+
+            margin: 0;
+
+            font-size: 18px;
+
+            line-height: 1.8;
+
+        }
+
+        /* =========================
+        Profile
+
+        ========================= */
+
+        .profile {
+
+            padding: 20px;
+
+        }
+
+        .profile h2 {
+
+            margin: 0 0 15px;
+
+            padding: 14px 10px;
+
+            background: #f45d8a;
+
+            color: white;
+
+            border-radius: 20px;
+
+            text-align: center;
+
+            font-size: 28px;
+
+        }
+
+        /* Profile Item */
+
+        .profile-item {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 15px;
+
+            padding: 12px 5px;
+
+            border-bottom:
+
+                1px solid #f5d8df;
+
+        }
+
+        .profile-item:last-child {
+
+            border-bottom: none;
+
+        }
+
+        /* Profile Title */
+
+        .profile-title {
+
+            flex: 0 0 115px;
+
+            padding: 9px 8px;
+
+            background: #ffe0e8;
+
+            color: #d94f70;
+
+            border-radius: 18px;
+
+            text-align: center;
+
+            font-weight: bold;
+
+            font-size: 16px;
+
+        }
+
+        /* Profile Text */
+
+        .profile-text {
+
+            flex: 1;
+
+            padding-top: 5px;
+
+            line-height: 1.6;
+
+            font-size: 16px;
+
+            word-break: keep-all;
+
+        }
+
+        /* =========================
+
+           Gacha Box
+
+        ========================= */
+
+        .gacha-box {
+
+            padding: 25px 20px 30px;
+
+            text-align: center;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: flex-start;
+
+            align-items: center;
+
+        }
+
+        /* =========================
+
+           Gacha Machine
+
+        ========================= */
+
+        .gacha-machine {
+
+            display: block;
+
+            width: 100%;
+
+            max-width: 400px;
+
+            height: auto;
+
+            margin: 0 auto 15px;
+
+            border-radius: 20px;
+
+            transform-origin: center;
+
+        }
+
+        /* =========================
+
+           Gacha Animation
+
+        ========================= */
+
+        .gacha-machine.spinning {
+
+            animation:
+
+                gachaShake 0.12s infinite alternate;
+
+        }
+
+        @keyframes gachaShake {
+
+            0% {
+
+                transform:
+
+                    rotate(-4deg)
+
+                    scale(1);
+
+            }
+
+            50% {
+
+                transform:
+
+                    rotate(4deg)
+
+                    scale(1.03);
+
+            }
+
+            100% {
+
+                transform:
+
+                    rotate(-4deg)
+
+                    scale(1);
+
+            }
+
+        }
+
+        /* =========================
+
+           Gacha Button
+
+        ========================= */
+
+        .gacha-button {
+
+            width: 90%;
+
+            max-width: 380px;
+
+            padding: 18px 20px;
+
+            background: #f45d83;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 50px;
+
+            font-size: 24px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            box-shadow:
+
+                0 6px 0 #d9476b;
+
+            transition:
+
+                transform 0.2s,
+
+                box-shadow 0.2s;
+
+        }
+
+        .gacha-button:hover {
+
+            transform: translateY(3px);
+
+            box-shadow:
+
+                0 3px 0 #d9476b;
+
+        }
+
+        .gacha-button:active {
+
+            transform: translateY(6px);
+
+            box-shadow: none;
+
+        }
+
+        /* =========================
+        Gacha Description
+
+        ========================= */
+
+        .gacha-text {
+
+            margin: 20px 0 0;
+
+            font-size: 18px;
+
+            line-height: 1.7;
+
+        }
+
+        /* =========================
+
+           Fortune Result
+
+        ========================= */
+
+        .result {
+
+            width: 100%;
+
+            margin-top: 25px;
+
+            padding: 22px;
+
+            background: #fff0f6;
+
+            border:
+
+                3px solid #f58aaa;
+
+            border-radius: 20px;
+
+            color: #e9507a;
+
+            line-height: 1.7;
+
+            text-align: left;
+
+            min-height: 30px;
+
+            display: none;
+
+        }
+
+        /* Result ပေါ်လာရင် */
+
+        .result.show {
+
+            display: block;
+
+            animation:
+
+                resultPop 0.6s ease;
+
+        }
+
+        @keyframes resultPop {
+
+            0% {
+
+                transform: scale(0.5);
+
+                opacity: 0;
+
+            }
+
+            70% {
+
+                transform: scale(1.05);
+
+                opacity: 1;
+
+            }
+
+            100% {
+
+                transform: scale(1);
+
+                opacity: 1;
+
+            }
+
+        }
+
+        /* Fortune Title */
+
+        .fortune-title {
+
+            text-align: center;
+
+            font-size: 30px;
+
+            font-weight: bold;
+
+            margin-bottom: 15px;
+
+            color: #e83f76;
+
+        }
+
+        /* Fortune Text */
+
+        .fortune-text {
+
+            font-size: 18px;
+
+            color: #5b4545;
+
+            margin-bottom: 15px;
+
+        }
+
+        /* Lucky Sign */
+
+        .lucky-item {
+
+            padding: 12px;
+
+            margin-top: 10px;
+
+            background: #ffe0e8;
+
+            border-radius: 15px;
+
+            color: #d94f70;
+
+            font-size: 16px;
+
+        }
+
+        /* Today's Advice */
+
+        .fortune-action {
+
+            padding: 12px;
+
+            margin-top: 10px;
+
+            background: white;
+
+            border-radius: 15px;
+
+            color: #5b4545;
+
+            font-size: 16px;
+
+        }
+
+        /* =========================
+
+           Bottom Message
+
+        ========================= */
+
+        .message {
+
+            margin-top: 25px;
+
+            padding: 30px 20px;
+
+            background: white;
+
+            border:
+
+                3px dashed #f5a4b9;
+
+            border-radius: 25px;
+
+            text-align: center;
+
+        }
+
+        .message p {
+
+            margin: 5px 0 15px;
+
+            font-size: 21px;
+
+            line-height: 1.8;
+
+        }
+
+        .message span {
+
+            color: #f05b82;
+
+            font-weight: bold;
+
+        }
+
+        /* =========================
+
+           Tablet / Mobile
+
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .main-area {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .character,
+
+            .profile,
+
+            .gacha-box {
+
+                width: 100%;
+
+            }
+
+            header h1 {
+
+                font-size: 42px;
+
+            }
+
+        }
+
+        /* =========================
+
+           Small Mobile
+
+        ========================= */
+
+        @media (max-width: 500px) {
+
+            header {
+
+                padding:
+
+                    25px 15px 15px;
+
+            }
+
+            header h1 {
+
+                font-size: 34px;
+
+            }
+
+            header p {
+
+                font-size: 16px;
+
+            }
+
+            main {
+
+                padding: 15px;
+
+            }
+
+            .profile-item {
+
+                gap: 10px;
+
+            }
+
+            .profile-title {
+
+                flex-basis: 90px;
+
+                font-size: 14px;
+
+            }
+
+            .profile-text {
+
+                font-size: 14px;
+
+            }
+
+            .character h2 {
+
+                font-size: 26px;
+
+            }
+
+            .gacha-button {
+
+                font-size: 20px;
+
+            }
+
+            .fortune-title {
+
+                font-size: 25px;
+
+            }
+
+            .fortune-text {
+
+                font-size: 16px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- =========================
+          Header
+
+    ========================= -->
+
+    <header>
+
+        <h1>
+
+            🎀 人生ガチャ 🎀
+
+        </h1>
+
+        <p>
+
+            ～ 今日の運命を回してみる？ ～
+
+        </p>
+
+    </header>
+
+    <main>
+
+        <!-- =========================
+
+             3 Columns
+
+        ========================= -->
+
+        <section class="main-area">
+
+            <!-- =====================
+
+                 Left : Character
+
+            ====================== -->
+
+            <div class="character">
+
+                <div class="monkey">
+
+                    <img
+
+                        src="gachakey1.jpg"
+
+                        alt="ガチャキー">
+
+                </div>
+
+                <h2>
+
+                    🔑 ガチャキー
+
+                </h2>
+
+                <p>
+
+                    ガチャキーといっしょに<br>
+
+                    楽しい毎日を見つけよう❣️
+
+                </p>
+
+            </div>
+
+            <!-- =====================
+
+                 Center : Profile
+
+            ====================== -->
+
+            <div class="profile">
+
+                <h2>
+
+                    🌸 プロフィール
+
+                </h2>
+
+                <!-- 名前 -->
+
+                <div class="profile-item">
+
+                    <div class="profile-title">
+
+                        名前
+
+                    </div>
+
+                    <div class="profile-text">
+
+                        ガチャキー
+
+                    </div>
+
+                </div>
+
+                <!-- 種族 -->
+
+                <div class="profile-item">
+
+                    <div class="profile-title">
+
+                        種族
+
+                    </div>
+
+                    <div class="profile-text">
+
+                        おさる
+
+                    </div>
+
+                </div>
+
+                <!-- 性格 -->
+
+                <div class="profile-item">
+
+                    <div class="profile-title">
+
+                        性格
+
+                    </div>
+
+                    <div class="profile-text">
+
+                        明るくて好奇心いっぱい<br>
+
+                        みんなを応援する<br>
+
+                        ちょっとおちゃめな子
+
+                    </div>
+
+                </div>
+
+                <!-- 好きなもの -->
+
+                <div class="profile-item">
+
+                    <div class="profile-title">
+
+                        好きなもの
+
+                    </div>
+
+                    <div class="profile-text">
+
+                        ガチャ、わくわくすること<br>
+
+                        みんなの笑顔
+
+                    </div>
+
+                </div>
+
+                <!-- 特技 -->
+
+                <div class="profile-item">
+
+                    <div class="profile-title">
+
+                        特技
+
+                    </div>
+
+                    <div class="profile-text">
+
+                        どんな時でも<br>
+
+                        ポジティブにすること！
+
+                    </div>
+
+                </div>
+
+                <!-- 口ぐせ -->
+
+                <div class="profile-item">
+
+                    <div class="profile-title">
+
+                        口ぐせ
+
+                    </div>
+
+                    <div class="profile-text">
+
+                        「よし、ガチャしよ！」<br>
+
+                        「きっといいことあるよ！」
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- =====================
+
+                 Right : Gacha
+
+            ====================== -->
+
+            <div class="gacha-box">
+
+                <!-- Gacha Machine -->
+
+                <img
+
+                    src="gacha-machine.png"
+
+                    alt="ガチャマシン"
+
+                    class="gacha-machine"
+
+                    id="gachaMachine">
+
+                <!-- Gacha Button -->
+
+                <button
+
+                    class="gacha-button"
+
+                    id="gachaButton"
+
+                    onclick="playGacha()">
+
+                    ガチャを回す！ →
+
+                </button>
+
+                <!-- Fortune Result -->
+
+                <div
+
+                    id="result"
+
+                    class="result">
+
+                </div>
+
+                <!-- Description -->
+
+                <p class="gacha-text">
+
+                    今日の運勢を<br>
+
+                    ガチャキーといっしょに<br>
+
+                    見つけよう！
+
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- =========================
+                      Bottom Message
+
+        ========================= -->
+
+        <section class="message">
+
+            <p>
+
+                どんな1日も、<br>
+
+                きっといいことあるよ。
+
+            </p>
+
+            <p>
+
+                <span>
+
+                    ガチャキーといっしょに
+
+                </span>
+
+                <br>
+
+                <span>
+
+                    今日の運命のカギを見つけよう！ 💗
+
+                </span>
+
+            </p>
+
+        </section>
+
+    </main>
+
+    <!-- =========================
+
+         JavaScript
+
+    ========================= -->
+
+    <script>
+
+        function playGacha() {
+
+            const machine =
+
+                document.getElementById("gachaMachine");
+
+            const result =
+
+                document.getElementById("result");
+
+            const button =
+
+                document.getElementById("gachaButton");
+
+            /* =====================
+
+               Animation Start
+
+            ===================== */
+
+            machine.classList.add("spinning");
+
+            /* Button ကို ခဏပိတ် */
+
+            button.disabled = true;
+
+            button.style.opacity = "0.7";
+
+            /* အရင် Result ကိုဖျောက် */
+
+            result.innerHTML = "";
+
+            result.classList.remove("show");
+
+            /* =====================
+
+               Fortune Data
+
+            ===================== */
+
+            const results = [
+
+                {
+
+                    fortune: "🌸 大吉 🌸",
+
+                    text:
+
+                        "今日はとても運がいい日！小さな幸せがたくさん見つかりそう。",
+
+                    lucky:
+
+                        "ピンク色のものを見つけたら、あなたに幸運がやってくるかも💗",
+
+                    action:
+
+                        "今日は笑顔をたくさん見せてみよう！"
+
+                },
+
+                {
+
+                    fortune: "🍀 中吉 🍀",
+
+                    text:
+
+                        "今日は小さな幸せを見つけられそう！",
+
+                    lucky:
+
+                        "かわいいものや、きれいな花を見つけたらラッキー✨",
+
+                    action:
+
+                        "いつもより少し周りをよく見て歩いてみよう！"
+
+                },
+
+                {
+
+                    fortune: "💗 大吉 💗",
+
+                    text:
+
+                        "今日は素敵な出会いがあるかも！",
+
+                    lucky:
+
+                        "ピンク色のものを見つけたら大当たり！",
+
+                    action:
+
+                        "いつもより少し積極的に行動してみよう😊"
+
+                },
+
+                {
+
+                    fortune: "🌈 超大吉 🌈",
+
+                    text:
+
+                        "今日は最高の一日になりそう！何か嬉しいことが起こるかも！",
+
+                    lucky:
+
+                        "青・黄色・ピンクの3色を見つけたら超ラッキー！",
+
+                    action:
+
+                        "今日は楽しいことをたくさん探してみよう！💕"
+
+                },
+
+                {
+
+                    fortune: "✨ 中吉 ✨",
+
+                    text:
+
+                        "今日は思いがけない良いことがありそう！",
+
+                    lucky:
+
+                        "道を歩いていて笑顔の人を見つけたらラッキー🍀",
+
+                    action:
+
+                        "小さな変化にも気づいてみよう！"
+
+                },
+
+                {
+
+                    fortune: "💛 大吉 💛",
+
+                    text:
+
+                        "今日は明るい気持ちで過ごせそう！",
+
+                    lucky:
+
+                        "黄色いものを見つけたら、いいことが起こるかも🌟",
+
+                    action:
+
+                        "気になったことに挑戦してみよう！"
+
+                },
+
+                {
+
+                    fortune: "💙 吉 💙",
+
+                    text:
+
+                        "今日は落ち着いて行動すると運気アップ！",
+
+                    lucky:
+
+                        "青い空や青いものを見つけたらラッキー☁️",
+
+                    action:
+
+                        "焦らず、自分のペースで進んでみよう！"
+
+                },
+
+                {
+
+                    fortune: "🌷 大吉 🌷",
+
+                    text:
+
+                        "今日はかわいいものとの出会いがありそう！",
+
+                    lucky:
+
+                        "花やピンク色のものを見つけたら幸運のサイン🌸",
+
+                    action:
+
+                        "今日は好きなことをひとつ楽しんでみよう！"
+
+                },
+
+                {
+
+                    fortune: "⭐ 吉 ⭐",
+
+                    text:
+
+                        "今日は普通の日の中に、小さなラッキーが隠れているよ！",
+
+                    lucky:
+
+                        "同じ数字を何回か見かけたらラッキー✨",
+
+                    action:
+
+                        "「ありがとう」をたくさん言ってみよう！"
+
+                },
+
+                {
+
+                    fortune: "💖 超大吉 💖",
+
+                    text:
+
+                        "今日はあなたの笑顔が幸運を引き寄せる日！",
+
+                    lucky:
+
+                        "道でハートの形に見えるものを見つけたら大当たり❤️",
+
+                    action:
+
+                        "自分も周りの人も笑顔にしてみよう！"
+
+                },
+
+                {
+
+                    fortune: "🍀 吉 🍀",
+
+                    text:
+
+                        "今日はゆっくり歩くことで、いいものを見つけられそう！",
+
+                    lucky:
+
+                        "道で小さな花やかわいいものを見つけたらラッキー🌼",
+
+                    action:
+
+                        "今日は少しだけ寄り道してみてもいいかも！"
+
+                },
+
+                {
+
+                    fortune: "🌟 大吉 🌟",
+
+                    text:
+
+                        "今日は予想していなかった嬉しいことが起こるかも！",
+
+                    lucky:
+
+                        "偶然時計を見たとき、ゾロ目だったら超ラッキー！",
+
+                    action:
+
+                        "チャンスが来たら迷わず「やってみよう！」"
+
+                }
+
+            ];
+
+            /* =====================
+                        2 seconds later
+
+            ===================== */
+
+            setTimeout(function() {
+
+                /* Stop Animation */
+
+                machine.classList.remove("spinning");
+
+                /* Random */
+
+                const randomIndex =
+
+                    Math.floor(
+
+                        Math.random()
+
+                        * results.length
+
+                    );
+
+                const selected =
+
+                    results[randomIndex];
+
+                /* =====================
+
+                   Result Display
+
+                ===================== */
+
+                result.innerHTML = `
+
+                    <div class="fortune-title">
+
+                        ${selected.fortune}
+
+                    </div>
+
+                    <div class="fortune-text">
+
+                        ${selected.text}
+
+                    </div>
+
+                    <div class="lucky-item">
+
+                        🍀 ラッキーサイン<br>
+
+                        ${selected.lucky}
+
+                    </div>
+
+                    <div class="fortune-action">
+
+                        💡 今日のアドバイス<br>
+
+                        ${selected.action}
+
+                    </div>
+
+                `;
+
+                /* Show Result */
+
+                result.classList.add("show");
+
+                /* Button ပြန်ဖွင့် */
+
+                button.disabled = false;
+
+                button.style.opacity = "1";
+
+            }, 2000);
+
+        }
+
+    </script>
+
+</body>
+</html>
