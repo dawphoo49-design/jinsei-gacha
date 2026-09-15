@@ -755,6 +755,253 @@
 
     </style>
 
+
+<style id="final-gacha-design">
+html{scroll-behavior:smooth}
+body{
+  background:
+    radial-gradient(circle at 8% 5%,rgba(255,153,196,.38),transparent 25%),
+    radial-gradient(circle at 92% 10%,rgba(171,155,255,.30),transparent 25%),
+    radial-gradient(circle at 50% 95%,rgba(255,214,151,.25),transparent 28%),
+    linear-gradient(135deg,#fff7fb 0%,#fffafd 42%,#f7f4ff 100%);
+  color:#59454f;
+  overflow-x:hidden;
+}
+body:before,body:after{
+  position:fixed;
+  pointer-events:none;
+  z-index:-1;
+  font-size:30px;
+  opacity:.22;
+}
+body:before{content:"✦  ♡  ✧  ♡  ✦";top:7%;left:2%;transform:rotate(-15deg)}
+body:after{content:"♡  ✧  ✦  ♡  ✧";bottom:7%;right:2%;transform:rotate(15deg)}
+
+header{
+  padding:42px 20px 28px;
+  position:relative;
+}
+header:before{
+  content:"TODAY'S FORTUNE";
+  display:inline-block;
+  padding:6px 16px;
+  margin-bottom:12px;
+  border-radius:999px;
+  background:rgba(255,255,255,.78);
+  border:1px solid rgba(239,79,130,.16);
+  color:#d85b86;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.16em;
+  box-shadow:0 7px 20px rgba(150,90,120,.08);
+}
+header h1{
+  font-size:clamp(40px,5vw,64px);
+  line-height:1.1;
+  color:#ec4f87;
+  text-shadow:0 4px 0 rgba(255,255,255,.85),0 10px 24px rgba(236,79,135,.15);
+}
+header p{
+  font-size:clamp(17px,2vw,22px);
+  color:#6b555d;
+  margin-top:12px;
+}
+
+main{max-width:1500px;padding:18px 28px 70px}
+.main-area{
+  gap:26px;
+  align-items:start;
+}
+.character,.profile,.gacha-box{
+  position:relative;
+  border:1px solid rgba(255,255,255,.95);
+  background:rgba(255,255,255,.84);
+  box-shadow:0 18px 45px rgba(119,76,105,.11),0 2px 8px rgba(119,76,105,.06);
+  backdrop-filter:blur(10px);
+  border-radius:30px;
+}
+.character:before,.profile:before,.gacha-box:before{
+  content:"";
+  position:absolute;
+  left:18px;right:18px;top:0;height:5px;
+  border-radius:0 0 10px 10px;
+  background:linear-gradient(90deg,#ff77ae,#a18cff);
+}
+.character{padding:28px 22px 32px}
+.monkey img{
+  border-radius:24px;
+  box-shadow:0 12px 30px rgba(105,66,86,.10);
+  transition:transform .35s ease;
+}
+.character:hover .monkey img{transform:translateY(-5px) rotate(-1deg)}
+.character h2{
+  color:#e84d82;
+  font-size:32px;
+  margin:18px 0 8px;
+}
+.character p{color:#6a555c}
+
+.profile{padding:28px 24px}
+.profile h2{
+  background:linear-gradient(135deg,#ff6f9f,#9b82ff);
+  box-shadow:0 10px 22px rgba(155,130,255,.18);
+  font-size:25px;
+}
+.profile-item{padding:15px 4px;border-bottom:1px solid #f5dce5}
+.profile-title{
+  background:linear-gradient(135deg,#ffe0ea,#f3e7ff);
+  color:#d64e78;
+  border:1px solid rgba(239,100,140,.10);
+  box-shadow:0 5px 12px rgba(170,90,120,.06);
+}
+.profile-text{color:#5d4a51}
+
+.gacha-box{
+  padding:30px 22px 34px;
+  overflow:hidden;
+}
+.gacha-box:after{
+  content:"✦  ✧  ✦";
+  position:absolute;
+  top:16px;right:22px;
+  color:#f5b7cf;
+  font-size:20px;
+  letter-spacing:7px;
+}
+.gacha-machine{
+  max-width:440px;
+  border-radius:28px;
+  filter:drop-shadow(0 18px 18px rgba(72,44,67,.14));
+  transition:transform .25s ease,filter .25s ease;
+}
+.gacha-machine:hover{
+  transform:translateY(-6px) scale(1.015);
+  filter:drop-shadow(0 24px 24px rgba(72,44,67,.18));
+}
+.gacha-button{
+  width:min(92%,390px);
+  margin-top:5px;
+  padding:19px 22px;
+  font-size:22px;
+  background:linear-gradient(135deg,#ff5f97,#9b82ff)!important;
+  box-shadow:0 8px 0 #d84978,0 16px 30px rgba(155,130,255,.20)!important;
+}
+.gacha-button:hover{
+  transform:translateY(2px) scale(1.02)!important;
+  box-shadow:0 5px 0 #d84978,0 18px 34px rgba(155,130,255,.26)!important;
+}
+.gacha-button:active{transform:translateY(7px) scale(.98)!important}
+.gacha-button:disabled{filter:grayscale(.1);cursor:wait}
+
+.gacha-text{
+  color:#765e67;
+  margin-top:18px;
+  font-size:17px;
+}
+
+.result{
+  margin-top:25px;
+  padding:24px;
+  background:linear-gradient(145deg,rgba(255,247,251,.98),rgba(248,245,255,.98));
+  border:2px solid #f59abb;
+  border-radius:26px;
+  box-shadow:0 15px 35px rgba(170,80,120,.12);
+  position:relative;
+  overflow:hidden;
+}
+.result:before{
+  content:"✨ TODAY'S RESULT ✨";
+  display:block;
+  text-align:center;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.16em;
+  color:#bd7795;
+  margin-bottom:8px;
+}
+.result:after{
+  content:"✦  ✧  ♡  ✧  ✦";
+  position:absolute;
+  top:8px;left:12px;
+  color:#f6bfd3;
+  font-size:15px;
+  opacity:.8;
+}
+.result.show{animation:resultPop .65s cubic-bezier(.2,.8,.2,1)}
+.fortune-title{
+  font-size:32px;
+  color:#e83f76;
+  text-shadow:0 3px 12px rgba(232,63,118,.12);
+}
+.fortune-text{
+  padding:13px 14px;
+  background:rgba(255,255,255,.75);
+  border-radius:16px;
+}
+.lucky-item,.fortune-action,.fortune-caution{
+  border-radius:17px;
+  border:1px solid rgba(220,150,180,.12);
+  box-shadow:0 6px 15px rgba(100,70,90,.05);
+}
+.lucky-item{
+  background:linear-gradient(135deg,#ffe0ea,#fff0f6);
+}
+.fortune-action{
+  background:linear-gradient(135deg,#fff,#f5f1ff);
+}
+.fortune-caution{
+  margin-top:10px;
+  padding:12px 14px;
+  background:linear-gradient(135deg,#fff7db,#fff1c0);
+  border:1px solid #f1d58a;
+  color:#765b32;
+  font-size:16px;
+}
+.message{
+  margin-top:30px;
+  background:rgba(255,255,255,.86);
+  border:2px dashed #f2a2bb;
+  box-shadow:0 15px 35px rgba(130,80,110,.08);
+  border-radius:30px;
+}
+.message:before{
+  content:"🎀  GACHA KEY MESSAGE  🎀";
+  display:block;
+  color:#d95c84;
+  font-weight:800;
+  letter-spacing:.08em;
+  margin-bottom:12px;
+}
+.message p{font-size:20px}
+
+@keyframes sparkleIn{
+  0%{opacity:0;transform:scale(.4) rotate(-20deg)}
+  70%{opacity:1;transform:scale(1.2) rotate(8deg)}
+  100%{opacity:1;transform:scale(1) rotate(0)}
+}
+.gacha-box.spinning-finish{animation:sparkleIn .45s ease}
+
+@media (max-width:900px){
+  main{padding:12px 16px 50px}
+  .main-area{gap:20px}
+  .character,.profile,.gacha-box{border-radius:28px}
+  .gacha-box{padding-top:28px}
+}
+@media (max-width:500px){
+  header{padding:28px 14px 18px}
+  header h1{font-size:35px}
+  header p{font-size:16px}
+  main{padding:10px 12px 40px}
+  .character,.profile,.gacha-box{border-radius:24px}
+  .character{padding:22px 16px 26px}
+  .profile{padding:22px 16px}
+  .gacha-box{padding:22px 14px 28px}
+  .gacha-machine{border-radius:20px}
+  .gacha-button{font-size:19px;padding:17px}
+  .result{padding:19px}
+  .fortune-title{font-size:27px}
+}
+</style>
 </head>
 
 <body>
@@ -1462,6 +1709,14 @@
                         💡 今日のアドバイス<br>
 
                         ${selected.action}
+
+                    </div>
+
+                    <div class="fortune-caution">
+
+                        ⚠️ 注意<br>
+
+                        ${selected.caution || "いい結果が出ても油断せず、悪い結果が出ても気にしすぎないようにしましょう。"}
 
                     </div>
 
